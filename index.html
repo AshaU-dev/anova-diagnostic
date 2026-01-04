@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anova Edu — Business Systems Diagnostic</title>
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#0b1b2a;
+      --muted:#4b5b6b;
+      --line:#d7e0ea;
+      --card:#f6f9fc;
+      --card2:#ffffff;
+      --blue:#0b3a66;
+      --blue2:#0e4a85;
+      --shadow: 0 10px 30px rgba(11,27,42,0.08);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #ffffff;
+  color: #0f172a; /* keeps your corporate text tone */
+}
+
+    header{
+      padding: 26px 18px 8px;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .brand{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .brandLeft{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+
+    .logo{
+      width:90px;
+      height:90px;
+      object-fit:contain;
+      border-radius: 12px;
+      background:#fff;
+      border:1px solid var(--line);
+      padding:6px;
+      box-shadow: var(--shadow);
+    }
+
+    .title{
+      font-size: clamp(22px, 3vw, 34px);
+      margin:0;
+      letter-spacing: 0.2px;
+      color: var(--blue);
+    }
+
+    .tagline{
+      margin:8px 0 0;
+      color: var(--muted);
+      max-width: 78ch;
+      font-size: 18px;
+    }
+
+    .pill{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      border:1px solid var(--line);
+      padding:10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+      color: var(--muted);
+      font-size: 13px;
+      white-space:nowrap;
+      box-shadow: var(--shadow);
+    }
+
+    main{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px 60px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 16px;
+      align-items:start;
+    }
+
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.92));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .card h2{
+      margin:0;
+      padding: 16px 16px 0;
+      font-size: 18px;
+      letter-spacing:0.2px;
+      color: var(--blue);
+    }
+
+    .card .sub{
+      padding: 8px 16px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section{
+      padding: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .q{
+      padding: 14px;
+      border: 1px solid rgba(11,58,102,0.14);
+      border-radius: 14px;
+      background: rgba(11,58,102,0.04);
+      margin-bottom: 12px;
+    }
+
+    .q .meta{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+
+    .q .pillar{
+      font-size: 12px;
+      color: var(--blue);
+      border: 1px solid rgba(11,58,102,0.20);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(11,58,102,0.06);
+    }
+
+    .q h3{
+      margin: 10px 0 10px;
+      font-size: 15px;
+      font-weight: 650;
+      color: var(--ink);
+    }
+
+    .opts{
+      display:grid;
+      gap:8px;
+    }
+
+    label.opt{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 10px;
+      border-radius: 12px;
+      border:1px solid rgba(11,58,102,0.12);
+      background: rgba(255,255,255,0.85);
+      cursor:pointer;
+      transition: transform 0.08s ease, border-color 0.2s ease;
+    }
+
+    label.opt:hover{
+      transform: translateY(-1px);
+      border-color: rgba(11,58,102,0.30);
+    }
+
+    input[type="radio"]{margin-top:3px}
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    button{
+      border:none;
+      cursor:pointer;
+      border-radius: 14px;
+      padding: 11px 14px;
+      font-weight: 650;
+      letter-spacing:0.2px;
+    }
+
+    .primary{
+      background: linear-gradient(90deg, var(--blue), var(--blue2));
+      color: #fff;
+    }
+
+    .ghost{
+      background: rgba(11,58,102,0.08);
+      color: var(--blue);
+      border:1px solid rgba(11,58,102,0.20);
+    }
+
+    .danger{
+      background: rgba(255,60,60,0.08);
+      color: #7a1121;
+      border:1px solid rgba(255,60,60,0.22);
+    }
+
+    .note{
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    /* Results */
+    .kpi{
+      display:grid;
+      gap:10px;
+    }
+
+    .kpi .box{
+      padding: 14px;
+      border: 1px solid rgba(11,58,102,0.18);
+      border-radius: 14px;
+      background: rgba(11,58,102,0.04);
+    }
+
+    .score{
+      font-size: 34px;
+      font-weight: 800;
+      margin: 6px 0 0;
+      color: var(--blue);
+    }
+
+    .band{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(11,58,102,0.20);
+      background: rgba(255,255,255,0.85);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .bar{
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(11,58,102,0.10);
+      overflow:hidden;
+      margin-top: 10px;
+      border: 1px solid rgba(11,58,102,0.10);
+    }
+
+    .bar > div{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(11,58,102,0.35), rgba(11,58,102,0.75));
+    }
+
+    .pillars{
+      display:grid;
+      gap:10px;
+    }
+
+    .pillRow{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border:1px solid rgba(11,58,102,0.14);
+      background: rgba(255,255,255,0.85);
+    }
+
+    .pillRow b{font-size: 13px; color: var(--ink)}
+    .pillRow span{color: var(--muted); font-size: 13px}
+
+    .flags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top: 10px;
+    }
+
+    .flag{
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      border:1px solid rgba(11,58,102,0.18);
+      background: rgba(255,255,255,0.8);
+      color: var(--muted);
+    }
+
+    .report{
+      white-space: pre-wrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12.5px;
+      color: rgba(11,27,42,0.92);
+    }
+
+    .small{
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .req{
+      color: var(--blue2);
+      font-weight: 700;
+    }
+
+    .scenarioImg{
+      width:100%;
+      max-height:220px;
+      object-fit:cover;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+
+    /* Contact capture */
+    .formGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width:720px){
+      .formGrid{grid-template-columns:1fr}
+    }
+    input[type="text"], input[type="email"]{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-size:14px;
+    }
+    .consent{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+font-size: 13px;
+}
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brandLeft">
+      <!-- ✅ Put your logo file next to this HTML or adjust the path -->
+      <img class="logo" src="anova-edu-logo.png" alt="Anova Edu logo"
+           onerror="this.style.display='none';" />
+      <div>
+        <h1 class="title">Anova Edu — Business Systems Diagnostic</h1>
+        <p class="tagline">
+ <p><strong>We don’t guess. We diagnose.</strong></p>
+  The Anova Edu Business Systems Diagnostic identifies how your organisation truly operates under pressure. 
+  Through a structured systems assessment and practical decision scenarios, it surfaces how capacity, priorities, 
+  processes, and decisions are managed day to day.<br><br>
+  Answer the questions to assess the stability and scalability of your operations and receive a comprehensive diagnostic report.
+</p>
+
+        </p>
+      </div>
+    </div>
+    <div class="pill">⏱️ 7–10 minutes</div>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+    <!-- LEFT: Assessment -->
+    <section class="card" id="assessmentCard">
+      <h2>Assessment</h2>
+      <div class="sub">Complete all questions marked with <span class="req">*</span>.</div>
+      <div class="section" id="questions"></div>
+
+      <!-- Part 2 -->
+      <div class="section" id="scenarioWrapper">
+        <h2 style="padding:0; margin:0 0 8px;">Part 2: Operational Decision Scenarios</h2>
+        <div class="sub" style="padding:0; margin:0 0 12px;">
+          Short scenarios designed to surface how work typically runs under pressure.
+        </div>
+        <div id="scenarioQuestions"></div>
+      </div>
+
+      <!-- Contact capture (gated full report download) -->
+      <div class="section" id="contactSection">
+        <h2 style="padding:0; margin:0 0 8px;">Receive your full diagnostic report</h2>
+        <div class="sub" style="padding:0; margin:0 12px;">
+          To provide your report and follow up about next steps (optional), please share your contact details.
+          Your information will only be used in relation to this diagnostic.
+        </div>
+
+        <div class="formGrid" style="margin-top:12px;">
+          <input id="firstName" type="text" placeholder="First name *" required>
+          <input id="lastName" type="text" placeholder="Last name *" required>
+          <input id="orgName" type="text" placeholder="Organisation">
+          <input id="workEmail" type="email" placeholder="Work email *" required>
+        </div>
+
+        <label class="consent">
+          <input id="consent" type="checkbox" />
+          <span>I consent to being contacted regarding this diagnostic and its results.</span>
+        </label>
+
+        <div class="note">
+          Tip: In v1 this data stays in your browser. To actually collect leads, we’ll connect this to a form endpoint
+          (Google Forms, Airtable, Make/Zapier, or your CRM).
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="actions">
+          <button class="ghost" id="fillDemoBtn" type="button">Auto-fill demo answers</button>
+          <button class="danger" id="resetBtn" type="button">Reset</button>
+          <button class="primary" id="calculateBtn" type="button">Generate Full Report</button>
+        </div>
+        <div class="note">
+          Privacy note: this v1 runs entirely in your browser. No data is sent anywhere unless you connect it to email/CRM.
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Results -->
+    <aside class="card" id="resultsCard">
+      <h2>Results</h2>
+      <div class="sub">Your score summary and full report preview.</div>
+
+      <div class="section kpi">
+        <div class="box">
+          <div class="band" id="bandBadge">Complete the assessment to view your diagnosis</div>
+          <div class="score" id="overallScore">—</div>
+          <div class="small">Systems maturity (1.0–4.0)</div>
+          <div class="bar"><div id="scoreBar"></div></div>
+        </div>
+
+        <div class="box">
+          <b>Behavioural resilience (scenarios)</b>
+          <div class="score" id="behaviourScore">—</div>
+          <div class="small">Behaviour score (1.0–4.0)</div>
+          <div class="bar"><div id="behaviourBar"></div></div>
+        </div>
+
+        <div class="box">
+          <b>Pillar breakdown</b>
+          <div class="pillars" id="pillarScores" style="margin-top:10px;"></div>
+          <div class="flags" id="flags"></div>
+        </div>
+
+        <div class="box">
+          <b>Full report (preview)</b>
+          <div class="small" style="margin:8px 0 10px;">
+            Use “Download Full Report” to save a branded HTML report (you can print to PDF).
+          </div>
+          <div class="actions" style="justify-content:flex-start; margin-bottom:10px;">
+            <button class="ghost" id="downloadBtn" type="button" disabled>Download Full Report</button>
+            <button class="ghost" id="printBtn" type="button" disabled>Print / Save as PDF</button>
+          </div>
+          <div class="report" id="reportText">—</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<script>
+/* ===============================
+   1) CONFIG + DATA STRUCTURES
+================================ */
+const PILLARS = [
+  { id:"ops", name:"Operations & Workflow" },
+  { id:"gov", name:"Governance & Policies" },
+  { id:"pm",  name:"Project & Change Management" },
+  { id:"role",name:"Roles, Capacity & Team Structure" },
+  { id:"tools",name:"Tools, Data & Automation" },
+  { id:"lead",name:"Leadership Clarity & Decision-Making" },
+];
+
+function q(id, pillarId, text, ...options){ return { id, pillarId, text, options }; }
+function opt(label, score){ return { label, score }; }
+function sc(n, category, image, scenarioText, ...options){
+  return { id:`s${n}`, n, category, image, scenarioText, options };
+}
+function optS(label, score){ return { label, score }; }
+
+const QUESTIONS = [
+  q("ops1","ops","Scenario: A key team member is unexpectedly absent for two weeks. What happens?",
+    opt("Work continues smoothly using documented processes.",4),
+    opt("Some delays, but tasks are redistributed informally.",3),
+    opt("Work slows significantly; knowledge lives in people.",2),
+    opt("Operations stall or quality drops immediately.",1)
+  ),
+  q("ops2","ops","How often do tasks get delayed because inputs/handovers are unclear?",
+    opt("Rarely or never.",4), opt("Sometimes.",3), opt("Often.",2), opt("Almost always.",1)
+  ),
+  q("ops3","ops","When something breaks in a workflow, how is it handled?",
+    opt("Root cause is identified and the process is improved.",4),
+    opt("A workaround is used while a fix is planned.",3),
+    opt("Workarounds become the new normal.",2),
+    opt("We firefight; it keeps happening.",1)
+  ),
+
+  q("gov1","gov","How are policies/procedures used in daily work?",
+    opt("Actively referenced and updated.",4),
+    opt("Available but rarely consulted.",3),
+    opt("Outdated or inconsistent across teams.",2),
+    opt("Mostly informal or undocumented.",1)
+  ),
+  q("gov2","gov","If a risk/compliance issue appears, what’s the response?",
+    opt("Clear owners, documented steps, evidence captured.",4),
+    opt("Handled, but documentation is inconsistent.",3),
+    opt("Handled differently each time.",2),
+    opt("Unclear ownership; issues linger.",1)
+  ),
+  q("gov3","gov","How confident are you that staff understand “the right way” to do critical tasks?",
+    opt("Very confident (trained + documentation).",4),
+    opt("Somewhat confident (depends on team).",3),
+    opt("Not very confident (varies widely).",2),
+    opt("Low confidence (tribal knowledge).",1)
+  ),
+
+  q("pm1","pm","When priorities change mid-project, what usually happens?",
+    opt("Scope, timelines, and responsibilities are formally adjusted.",4),
+    opt("Teams adapt, but documentation lags.",3),
+    opt("Confusion and rework increase.",2),
+    opt("Deadlines slip and accountability blurs.",1)
+  ),
+  q("pm2","pm","How are projects tracked across the organisation?",
+    opt("Single, shared method/tool with visibility.",4),
+    opt("Mostly consistent with minor variations.",3),
+    opt("Different teams use different methods.",2),
+    opt("Tracking is ad-hoc or unclear.",1)
+  ),
+  q("pm3","pm","After projects finish, do you capture lessons learned and apply them?",
+    opt("Yes — consistently, and we improve standards.",4),
+    opt("Sometimes, depending on project.",3),
+    opt("Rarely.",2),
+    opt("Almost never.",1)
+  ),
+
+  q("role1","role","How clear are role boundaries and responsibilities?",
+    opt("Very clear; accountability is understood.",4),
+    opt("Mostly clear; some overlap.",3),
+    opt("Unclear; overlap causes friction.",2),
+    opt("Very unclear; work is reactive.",1)
+  ),
+  q("role2","role","How often do people do work that isn’t officially theirs (because “someone has to”)?",
+    opt("Rarely.",4), opt("Sometimes.",3), opt("Often.",2), opt("Almost always.",1)
+  ),
+  q("role3","role","How sustainable is your team’s workload over the next 3–6 months?",
+    opt("Sustainable; capacity planning exists.",4),
+    opt("Manageable but tight.",3),
+    opt("Unsustainable without changes.",2),
+    opt("High burnout risk.",1)
+  ),
+
+  q("tools1","tools","Which best describes your current tools?",
+    opt("Integrated, intentional, and well-used.",4),
+    opt("Functional but fragmented.",3),
+    opt("Overlapping tools with manual workarounds.",2),
+    opt("Heavy reliance on spreadsheets and email.",1)
+  ),
+  q("tools2","tools","How easy is it to find the latest version of documents (policies, templates, SOPs)?",
+    opt("Very easy (single source of truth).",4),
+    opt("Usually possible with some searching.",3),
+    opt("Often difficult.",2),
+    opt("Very difficult; duplicates everywhere.",1)
+  ),
+  q("tools3","tools","How much time is spent on repetitive admin that could be automated?",
+    opt("Very little.",4), opt("Some.",3), opt("A lot.",2), opt("Most of the time.",1)
+  ),
+
+  q("lead1","lead","When a decision must be made quickly, what happens?",
+    opt("Clear ownership and escalation paths exist.",4),
+    opt("Decisions are made, but not always communicated.",3),
+    opt("Decisions are delayed or revisited repeatedly.",2),
+    opt("Teams wait, guess, or act independently.",1)
+  ),
+  q("lead2","lead","How aligned are leaders on priorities and what “success” looks like?",
+    opt("Highly aligned and consistent.",4),
+    opt("Mostly aligned; occasional conflict.",3),
+    opt("Often misaligned; mixed messages.",2),
+    opt("Low alignment; constant shifting.",1)
+  ),
+  q("lead3","lead","When issues are raised, how does leadership respond?",
+    opt("Structured follow-up with owners and deadlines.",4),
+    opt("Generally supportive, but inconsistent follow-through.",3),
+    opt("Reactive; depends on urgency.",2),
+    opt("Issues get stuck or ignored.",1)
+  ),
+];
+
+const SCENARIOS = [
+  sc(1,"Capacity & Team Sustainability","images/sc01.png","A high-performing staff member consistently delivers critical outputs and is relied upon for complex or time-sensitive tasks. Other team members are less involved in this work.",
+    optS("Responsibilities and knowledge are intentionally distributed to maintain sustainable capacity and continuity.",4),
+    optS("The individual continues leading delivery, with others providing support when required.",3),
+    optS("The arrangement remains in place as long as performance targets continue to be met.",2),
+    optS("Additional support or redistribution is considered once pressure becomes visible.",1)
+  ),
+  sc(2,"Capacity & Team Sustainability","images/sc02.png","A staff member is approved for professional development or training while continuing to hold operational responsibilities. No formal backfill or workload adjustment is planned.",
+    optS("Workloads and priorities are adjusted to protect both learning outcomes and delivery.",4),
+    optS("Colleagues temporarily absorb tasks to maintain continuity.",3),
+    optS("The staff member manages both training and operational responsibilities concurrently.",2),
+    optS("Training participation is delayed, reduced, or deprioritised due to workload pressure.",1)
+  ),
+  sc(3,"Capacity & Team Sustainability","images/sc03.png","The organisation takes on additional projects, responsibilities, or commitments without a corresponding increase in staff capacity.",
+    optS("Scope, timelines, or delivery expectations are adjusted to align with available capacity.",4),
+    optS("Teams stretch temporarily to accommodate the increased workload.",3),
+    optS("Overtime and informal workarounds become part of normal operations.",2),
+    optS("Delivery quality or staff retention is impacted over time.",1)
+  ),
+  sc(4,"Capacity & Team Sustainability","images/sc04.png","A recurring skill gap is identified through delivery challenges, performance reviews, or audit findings.",
+    optS("Targeted development, recruitment, or role redesign is implemented to address the gap.",4),
+    optS("Informal mentoring or peer support is encouraged.",3),
+    optS("Teams work around the gap using existing strengths.",2),
+    optS("The gap continues to surface across projects without sustained resolution.",1)
+  ),
+
+  sc(5,"Project & Priority Management","images/sc05.png","Multiple senior stakeholders label their requests as urgent, competing for the same limited resources.",
+    optS("Priorities are clarified and formally aligned against agreed criteria.",4),
+    optS("Work is sequenced informally to accommodate the most pressing requests.",3),
+    optS("Teams shift focus frequently to respond to changing demands.",2),
+    optS("Progress slows while teams wait for direction or resolution.",1)
+  ),
+  sc(6,"Project & Priority Management","images/sc06.png","Additional requirements are introduced during a project without corresponding adjustments to timelines, budgets, or resources.",
+    optS("Scope, timelines, and responsibilities are formally reviewed and adjusted.",4),
+    optS("Changes are absorbed to maintain momentum.",3),
+    optS("Trade-offs are made informally to protect key deliverables.",2),
+    optS("Accountability becomes less clear as expectations continue to evolve.",1)
+  ),
+  sc(7,"Project & Priority Management","images/sc07.png","A project involves multiple teams, but ownership and decision authority are not clearly defined at the outset.",
+    optS("Ownership and decision rights are clarified and documented early.",4),
+    optS("One team informally assumes coordination responsibilities.",3),
+    optS("Decisions are revisited as issues arise.",2),
+    optS("Progress slows due to misalignment and duplicated effort.",1)
+  ),
+  sc(8,"Project & Priority Management","images/sc08.png","Post-project reviews identify issues that have occurred in previous initiatives.",
+    optS("Standards, templates, or processes are updated based on lessons learned.",4),
+    optS("Insights are shared within teams for future reference.",3),
+    optS("Documentation is completed but rarely referenced.",2),
+    optS("Similar issues continue to appear in subsequent projects.",1)
+  ),
+
+  sc(9,"Administration & Time Management","images/sc09.png","Staff spend a significant portion of their time on administrative or reporting activities, limiting time available for core or strategic work.",
+    optS("Administrative tasks are streamlined, automated, or reassigned to protect core work.",4),
+    optS("Administrative work is redistributed informally within teams.",3),
+    optS("Core or strategic work is delayed to accommodate reporting requirements.",2),
+    optS("Staff extend working hours to manage competing demands.",1)
+  ),
+  sc(10,"Administration & Time Management","images/sc10.png","Staff calendars are heavily populated with recurring meetings, leaving limited time for focused or independent work.",
+    optS("Meetings are reviewed regularly and adjusted to ensure clear purpose and outcomes.",4),
+    optS("Attendance becomes flexible depending on workload.",3),
+    optS("Work is completed outside scheduled hours to maintain progress.",2),
+    optS("Decisions remain slow despite frequent meetings.",1)
+  ),
+  sc(11,"Administration & Time Management","images/sc11.png","Deadlines are established without a formal review of available capacity or workload implications.",
+    optS("Capacity is reviewed and scope or timelines are adjusted accordingly.",4),
+    optS("Teams absorb the pressure temporarily to meet expectations.",3),
+    optS("Quality or staff wellbeing is affected over time.",2),
+    optS("Accountability discussions emerge once targets are missed.",1)
+  ),
+  sc(12,"Administration & Time Management","images/sc12.png","Reports are manually compiled from multiple sources, requiring repeated reconciliation and validation.",
+    optS("Reporting processes are simplified or automated to reduce effort and risk.",4),
+    optS("Templates and checklists are introduced to improve consistency.",3),
+    optS("Errors or delays increase as reporting demands grow.",2),
+    optS("Confidence in reporting outputs gradually declines.",1)
+  ),
+
+  sc(13,"Operations & Decision Logic","images/sc13.png","An urgent purchase request is raised without prior market analysis or comparison of alternatives.",
+    optS("A proportionate review is conducted to balance urgency, compliance, and value.",4),
+    optS("A supplier with proven reliability is selected to minimise delivery risk.",3),
+    optS("The purchase proceeds quickly, with review steps addressed later if required.",2),
+    optS("Approval is based primarily on immediate operational need.",1)
+  ),
+  sc(14,"Operations & Decision Logic","images/sc14.png","Multiple suppliers submit proposals with differing prices, quality levels, and delivery timelines.",
+    optS("Decisions are based on total value, including quality, risk, and long-term impact.",4),
+    optS("Price is prioritised, with additional factors reviewed briefly.",3),
+    optS("Previous working relationships influence the final decision.",2),
+    optS("Time pressure drives selection to avoid delays.",1)
+  ),
+  sc(15,"Operations & Decision Logic","images/sc15.png","A vendor repeatedly fails to meet agreed service levels or delivery standards.",
+    optS("Performance issues are addressed using contractual mechanisms and formal follow-up.",4),
+    optS("Informal discussions are used to encourage improvement.",3),
+    optS("Issues are tolerated to maintain continuity of service.",2),
+    optS("Risks accumulate without structured resolution.",1)
+  ),
+  sc(16,"Operations & Decision Logic","images/sc16.png","Available data or evidence conflicts with a preferred solution or leadership assumption.",
+    optS("Decisions are revisited and adjusted based on evidence.",4),
+    optS("Data is acknowledged but balanced against experience or intuition.",3),
+    optS("Decisions proceed as planned, with data reviewed retrospectively.",2),
+    optS("Outcomes are reassessed only if issues later arise.",1)
+  ),
+];
+
+const RECOMMENDATION_LIBRARY = {
+  capacity_training: { title:"Capacity & skill development", detail:"Targeted capability building to remove recurring delivery strain (time management, workflow discipline, documentation habits, and decision clarity)." },
+  workflow_optimisation: { title:"Workflow optimisation", detail:"Stabilise your highest-friction workflows (handoffs, approvals, documentation flow) so delivery doesn’t depend on memory or informal coordination." },
+  project_priority_support: { title:"Project priority & change control", detail:"A lightweight prioritisation model and change-control routine so shifting priorities stop silently damaging timelines and accountability." },
+  admin_automation: { title:"Admin optimisation & automation", detail:"Reduce manual admin and reporting effort by simplifying templates, creating a single source of truth, and automating repetitive steps." }
+};
+
+const COPY = {
+  systems: {
+    strong:"Existing systems appear well embedded and consistently applied, providing a strong foundation for stability and scalability.",
+    established:"Core systems are in place and generally support day-to-day operations, though application may be uneven when demands increase.",
+    inconsistent:"Some formal systems exist, but their use appears inconsistent in practice, often relying on informal coordination under pressure.",
+    informal:"Formal systems appear limited or are not consistently relied upon in daily operations, increasing dependence on individuals and workarounds."
+  },
+  behaviour: {
+    strong:"Decision-making and delivery under pressure appear measured and structured, with established practices continuing to guide behaviour.",
+    established:"Established practices often guide decisions, though urgency or competing demands may sometimes shift work toward informal approaches.",
+    inconsistent:"Under pressure, work and decisions often depend on individual judgement and adaptive workarounds, which can reduce consistency over time.",
+    informal:"When demands intensify, decisions and delivery appear highly reactive, shaped more by immediate constraints than agreed frameworks."
+  }
+};
+
+/* ===============================
+   2) DOM HOOKS
+================================ */
+const questionsEl = document.getElementById("questions");
+const scenarioEl = document.getElementById("scenarioQuestions");
+
+const overallScoreEl = document.getElementById("overallScore");
+const behaviourScoreEl = document.getElementById("behaviourScore");
+const pillarScoresEl = document.getElementById("pillarScores");
+const bandBadgeEl = document.getElementById("bandBadge");
+const flagsEl = document.getElementById("flags");
+const reportTextEl = document.getElementById("reportText");
+const scoreBarEl = document.getElementById("scoreBar");
+const behaviourBarEl = document.getElementById("behaviourBar");
+
+const calculateBtn = document.getElementById("calculateBtn");
+const resetBtn = document.getElementById("resetBtn");
+const fillDemoBtn = document.getElementById("fillDemoBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+const printBtn = document.getElementById("printBtn");
+
+let lastReportHtml = "";
+let lastReportText = "";
+
+/* ===============================
+   3) RENDER
+================================ */
+function render(){
+  questionsEl.innerHTML = "";
+  QUESTIONS.forEach((qq, idx) => {
+    const pillarName = PILLARS.find(p => p.id === qq.pillarId)?.name ?? "—";
+    const wrap = document.createElement("div");
+    wrap.className = "q";
+    wrap.innerHTML = `
+      <div class="meta">
+        <div class="pillar">${escapeHtml(pillarName)}</div>
+        <div class="small">Q${idx+1} <span class="req">*</span></div>
+      </div>
+      <h3>${escapeHtml(qq.text)}</h3>
+      <div class="opts">
+        ${qq.options.map(o=>`
+          <label class="opt">
+            <input type="radio" name="${qq.id}" value="${o.score}" />
+            <div>${escapeHtml(o.label)}</div>
+          </label>
+        `).join("")}
+      </div>
+    `;
+    questionsEl.appendChild(wrap);
+  });
+}
+
+function renderScenarios(){
+  scenarioEl.innerHTML = "";
+  SCENARIOS.forEach((s, idx) => {
+    const wrap = document.createElement("div");
+    wrap.className = "q";
+    wrap.innerHTML = `
+      <div class="meta">
+        <div class="pillar">${escapeHtml(s.category)}</div>
+        <div class="small">S${idx+1} <span class="req">*</span></div>
+      </div>
+      <div style="margin:10px 0 12px;">
+        <img class="scenarioImg" src="${escapeHtml(s.image)}" alt="Scenario illustration"
+             onerror="this.style.display='none';" />
+      </div>
+      <h3>${escapeHtml(s.scenarioText)}</h3>
+      <div class="small" style="margin:6px 0 10px;">
+        <b>Which of the following best describes how this situation is typically handled?</b>
+      </div>
+      <div class="opts">
+        ${s.options.map(o=>`
+          <label class="opt">
+            <input type="radio" name="${s.id}" value="${o.score}" />
+            <div>${escapeHtml(o.label)}</div>
+          </label>
+        `).join("")}
+      </div>
+    `;
+    scenarioEl.appendChild(wrap);
+  });
+}
+
+/* ===============================
+   4) SCORING + REPORT
+================================ */
+function getAnswers(){
+  const answers = {};
+  for (const qq of QUESTIONS){
+    const chosen = document.querySelector(`input[name="${qq.id}"]:checked`);
+    answers[qq.id] = chosen ? Number(chosen.value) : null;
+  }
+  return answers;
+}
+function getScenarioAnswers(){
+  const ans = {};
+  for (const s of SCENARIOS){
+    const chosen = document.querySelector(`input[name="${s.id}"]:checked`);
+    ans[s.id] = chosen ? Number(chosen.value) : null;
+  }
+  return ans;
+}
+function allAnswered(answers){ return QUESTIONS.every(q => answers[q.id] !== null); }
+function allScenariosAnswered(ans){ return SCENARIOS.every(s => ans[s.id] !== null); }
+function avg(arr){ return arr.reduce((a,b)=>a+b,0)/arr.length; }
+
+function bandFor(score){
+  if (score >= 3.5) return "strong";
+  if (score >= 2.8) return "established";
+  if (score >= 2.0) return "inconsistent";
+  return "informal";
+}
+function getBand(score){
+  if (score >= 3.5) return { label:"Aligned & Scalable" };
+  if (score >= 2.8) return { label:"Functional but fragile under pressure" };
+  if (score >= 2.0) return { label:"Inconsistent practice; resilience depends on people" };
+  return { label:"At risk; structure and resilience require attention" };
+}
+
+function buildFlags(pillarAvg, behaviourScore){
+  const f = [];
+  const {ops, role, gov, tools, pm, lead} = pillarAvg;
+
+  if (ops <= 2.7 && role <= 2.7) f.push("Capacity strain: unclear workflows + sustainability pressure");
+  if (gov <= 2.7 && pm <= 2.7) f.push("Delivery risk: weak governance + inconsistent project control");
+  if (tools <= 2.7 && ops <= 2.7) f.push("Efficiency leak: manual workarounds + process fragility");
+  if (lead <= 2.7) f.push("Decision friction: unclear ownership / escalation");
+  if (pm <= 2.7) f.push("Change stress: priorities shift without structure");
+  if (gov <= 2.7) f.push("Compliance exposure: policies not operationalised");
+  if (behaviourScore <= 2.7) f.push("Pressure response: decisions rely on informal practice under urgency");
+  if (f.length === 0) f.push("No major red flags detected from this snapshot");
+  return f;
+}
+
+function makePriorityRecs(lowPillarIds){
+  const recs = [];
+  const has = (id) => lowPillarIds.includes(id);
+  if (has("ops")) recs.push("Map 1–2 critical workflows end-to-end and remove handover ambiguity (owners + inputs/outputs).");
+  if (has("role")) recs.push("Clarify roles and decision rights for key processes; reduce hidden work and overload.");
+  if (has("gov")) recs.push("Operationalise 2–3 essential policies/SOPs (simple, used, and version-controlled).");
+  if (has("pm")) recs.push("Standardise project intake + change control (scope, priorities, and communication cadence).");
+  if (has("tools")) recs.push("Create a single source of truth for docs + templates; reduce duplicate tools and manual workarounds.");
+  if (has("lead")) recs.push("Define decision ownership and escalation paths; align leadership on 3 priorities for the next quarter.");
+  return recs.slice(0,6);
+}
+
+function buildSupportSection({ recommendations }){
+  const mapped = recommendations
+    .map(key => RECOMMENDATION_LIBRARY[key])
+    .filter(Boolean)
+    .map(item => `- ${item.title}: ${item.detail}`);
+
+  if (!mapped.length) return "No specific support packages triggered by your lowest scoring areas.";
+
+  return `ANOVA EDU SUPPORT (TARGETED TO YOUR RESULTS)\n${mapped.join("\n")}`;
+}
+
+function buildFullReportText({ systemsScore, behaviourScore, pillarAvg, flags, recs, recommendations }){
+  const sysBand = bandFor(systemsScore);
+  const behBand = bandFor(behaviourScore);
+
+  return `ANOVA EDU — FULL DIAGNOSTIC REPORT
+
+INTRODUCTION
+
+You have completed the Anova Edu Business Systems Diagnostic. Completing this assessment is already a first step toward improving how work is structured, prioritised, and delivered within your organisation. The results below provide a snapshot of your current operating reality — based on how systems, processes, and decisions function in practice today.
+This report is not a judgement of performance or intent. It highlights patterns that shape day-to-day work, showing where your organisation is currently stable, where pressure is being absorbed by people rather than systems, and where improvement efforts are most likely to have impact.
+
+SCORING INTERPRETATION (HOW TO READ YOUR RESULTS)
+All scores in this report are based on a 1.0–4.0 maturity scale. Each score reflects how consistently systems, behaviours, and decision-making practices are applied in day-to-day operations — not how they are intended to function.
+Score bands are interpreted as follows:
+
+• 4.0 — Embedded / Controlled  
+Systems and ways of working are well-established, documented, and consistently applied. Delivery remains stable even when pressure increases or key individuals are unavailable.
+
+• 3.0–3.49 — Functional, but fragile under pressure  
+Core systems exist and generally support delivery, but consistency drops when demands increase. Informal coordination is often required to maintain momentum.
+
+• 2.0–2.99 — Inconsistent practice / people-dependent  
+Some structure exists, but outcomes depend heavily on individuals rather than systems. Workarounds, rework, and shifting priorities are common.
+
+• 1.0–1.99 — At risk / informal  
+Formal systems are limited or not reliably used. Delivery is reactive, unpredictable, and highly dependent on key individuals.
+
+The scores below reflect your current operating reality as indicated by your responses.
+
+1) ORGANISATIONAL SCORECARD
+Systems Maturity Score: ${systemsScore.toFixed(2)} / 4.00
+Behavioural Resilience Score: ${behaviourScore.toFixed(2)} / 4.00
+Systems interpretation
+${COPY.systems[sysBand]}
+Behavioural interpretation
+${COPY.behaviour[behBand]}
+
+2) WHAT TO EXPECT IF NOTHING CHANGES (NEXT TWO QUARTERS)
+- More work will be carried by the most reliable people → higher burnout and knowledge-risk.
+- Projects will feel “busy but slow” → more status meetings, less progress.
+- Delivery becomes less predictable → missed deadlines or quality dips become harder to explain.
+- Small issues remain unresolved → operational drag builds quietly over time.
+
+3) TOP PRESSURE SIGNALS DETECTED
+- ${flags.join("\n- ")}
+
+4) RECOMMENDATIONS (BASED ON YOUR LOWEST AREAS)
+- ${recs.join("\n- ")}
+
+${buildSupportSection({ recommendations })}
+
+5) NEXT STEPS
+This diagnostic highlights where pressure is currently building within your organisation and which areas would benefit most from targeted intervention.
+If you would like support translating these insights into a practical improvement plan — with clear priorities, timelines, and measurable outcomes — an Anova Edu consultant can work with you to do this in a focused working session.
+To discuss your results or explore tailored support options, contact us at info@anovaedu.org or visit www.anovaedu.org.
+`;
+}
+
+function buildReportHtml({ reportText, generatedOn, contact }){
+  const dateStr = generatedOn.toLocaleString();
+  return `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Anova Edu — Full Diagnostic Report</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#fff;color:#0b1b2a;}
+  .wrap{max-width:900px;margin:0 auto;padding:26px 18px 60px;}
+  h1{margin:0 0 6px;font-size:26px;color:#0b3a66;}
+  .meta{color:#4b5b6b;font-size:13px;margin:3px 0;}
+  .card{border:1px solid #d7e0ea;border-radius:16px;padding:14px;background:#f6f9fc;margin-top:12px;}
+  pre{white-space:pre-wrap;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:15px;line-height:1.6;margin:0;}
+  .print{position:fixed;right:16px;bottom:16px;padding:10px 12px;border-radius:12px;border:1px solid #d7e0ea;background:#fff;cursor:pointer;}
+  @media print{ .print{display:none;} }
+</style>
+</head>
+<body>
+  <button class="print" onclick="window.print()">Print / Save as PDF</button>
+  <div class="wrap">
+    <h1>Anova Edu — Full Diagnostic Report</h1>
+    <div class="meta">Generated: ${escapeHtml(dateStr)}</div>
+    <div class="meta">Prepared for: ${escapeHtml(contact.firstName)} ${escapeHtml(contact.lastName)}${contact.org?` — ${escapeHtml(contact.org)}`:""}</div>
+
+    <div class="card">
+      <pre>${escapeHtml(reportText)}</pre>
+    </div>
+  </div>
+</body>
+</html>`;
+}
+const SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbx5_gGjk3G8_omaHvaCKdrpaqpXFPJQ-cDIEMg96C2Lc945mQQz3UaACLxGk5MNvLjH7Q/exec";
+
+async function sendToGoogleSheet(payload) {
+  const body = new URLSearchParams(payload);
+
+  const res = await fetch(SHEET_WEBAPP_URL, {
+    method: "POST",
+    body
+  });
+
+  // If it can read JSON, great. If not, still fine.
+  try { return await res.json(); } catch { return { ok: res.ok }; }
+}
+
+function calc(){
+  const answers = getAnswers();
+  if (!allAnswered(answers)){ alert("Please answer all required questions in Part 1 before generating your report."); return; }
+
+  const sAns = getScenarioAnswers();
+  if (!allScenariosAnswered(sAns)){ alert("Please complete all required scenarios in Part 2 before generating your report."); return; }
+
+  const fn = document.getElementById("firstName").value.trim();
+  const ln = document.getElementById("lastName").value.trim();
+  const em = document.getElementById("workEmail").value.trim();
+  const consent = document.getElementById("consent").checked;
+  if (!fn || !ln || !em || !consent){
+    alert("Please enter First name, Last name, Work email, and tick consent to access the full report.");
+    return;
+  }
+
+  // Pillar averages
+  const pillarAgg = {};
+  PILLARS.forEach(p => pillarAgg[p.id] = []);
+  QUESTIONS.forEach(q => pillarAgg[q.pillarId].push(answers[q.id]));
+
+  const pillarAvg = {};
+  for (const pid of Object.keys(pillarAgg)){
+    pillarAvg[pid] = round2(avg(pillarAgg[pid]));
+  }
+
+  // Behaviour score (THIS WAS MISSING IN YOUR SCRIPT)
+  const scenarioScores = SCENARIOS.map(s => sAns[s.id]);
+  const behaviourScore = round2(avg(scenarioScores));
+
+  const systemsScore = round2(avg(Object.values(pillarAvg)));
+  const band = getBand(systemsScore);
+
+  // Recommendation triggers
+  const recommendations = [];
+  if (pillarAvg.role <= 2.7 || pillarAvg.ops <= 2.7) recommendations.push("capacity_training");
+  if (pillarAvg.ops <= 2.7) recommendations.push("workflow_optimisation");
+  if (pillarAvg.pm <= 2.7) recommendations.push("project_priority_support");
+  if (pillarAvg.tools <= 2.7) recommendations.push("admin_automation");
+
+  // Flags
+  const flags = buildFlags(pillarAvg, behaviourScore);
+
+  // Priority recs
+  const lowPillars = Object.entries(pillarAvg).sort((a,b)=>a[1]-b[1]).slice(0,3).map(([pid])=>pid);
+  const recs = makePriorityRecs(lowPillars);
+
+  // UI updates
+  overallScoreEl.textContent = systemsScore.toFixed(2);
+  behaviourScoreEl.textContent = behaviourScore.toFixed(2);
+  bandBadgeEl.textContent = band.label;
+  scoreBarEl.style.width = `${((systemsScore-1)/(4-1))*100}%`;
+  behaviourBarEl.style.width = `${((behaviourScore-1)/(4-1))*100}%`;
+
+  pillarScoresEl.innerHTML = "";
+  PILLARS.forEach(p => {
+    const row = document.createElement("div");
+    row.className = "pillRow";
+    row.innerHTML = `<b>${escapeHtml(p.name)}</b><span>${pillarAvg[p.id].toFixed(2)}</span>`;
+    pillarScoresEl.appendChild(row);
+  });
+
+  flagsEl.innerHTML = "";
+  flags.slice(0,6).forEach(f => {
+    const el = document.createElement("div");
+    el.className = "flag";
+    el.textContent = f;
+    flagsEl.appendChild(el);
+  });
+
+  // Report
+  const fullReportText = buildFullReportText({ systemsScore, behaviourScore, pillarAvg, flags, recs, recommendations });
+  lastReportText = fullReportText;
+  reportTextEl.textContent = fullReportText;
+const payload = {
+  timestamp_iso: new Date().toISOString(),
+  first_name: fn,
+  last_name: ln,
+  organisation: document.getElementById("orgName").value.trim(),
+  work_email: em,
+  consent: String(consent),
+
+  systems_score: systemsScore.toFixed(2),
+  behaviour_score: behaviourScore.toFixed(2),
+
+  ops: pillarAvg.ops?.toFixed(2),
+  gov: pillarAvg.gov?.toFixed(2),
+  pm: pillarAvg.pm?.toFixed(2),
+  role: pillarAvg.role?.toFixed(2),
+  tools: pillarAvg.tools?.toFixed(2),
+  lead: pillarAvg.lead?.toFixed(2),
+
+  flags: flags.join(" | "),
+  recommendations: recs.join(" | "),
+  report_text: lastReportText
+};
+
+// fire-and-forget (won’t break the report if Sheet fails)
+sendToGoogleSheet(payload).catch(console.error);
+
+  lastReportHtml = buildReportHtml({
+    reportText: fullReportText,
+    generatedOn: new Date(),
+    contact: { firstName: fn, lastName: ln, org: document.getElementById("orgName").value.trim(), email: em }
+  });
+
+  // ✅ Enable buttons ALWAYS after report is generated
+  downloadBtn.disabled = false;
+  printBtn.disabled = false;
+
+  // Scroll to results
+  document.getElementById("resultsCard").scrollIntoView({ behavior:"smooth" });
+}
+
+/* ===============================
+   5) BUTTONS (ALL WORK)
+================================ */
+function resetAll(){
+  document.querySelectorAll('input[type="radio"]').forEach(i => i.checked = false);
+  overallScoreEl.textContent = "—";
+  behaviourScoreEl.textContent = "—";
+  bandBadgeEl.textContent = "Complete the assessment to view your diagnosis";
+  scoreBarEl.style.width = "0%";
+  behaviourBarEl.style.width = "0%";
+  pillarScoresEl.innerHTML = "";
+  flagsEl.innerHTML = "";
+  reportTextEl.textContent = "—";
+  lastReportHtml = "";
+  lastReportText = "";
+  downloadBtn.disabled = true;
+  printBtn.disabled = true;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function fillDemo(){
+  const pattern18 = [3,3,2, 3,2,3, 3,2,2, 2,3,2, 3,2,2, 3,2,3];
+  QUESTIONS.forEach((q, idx) => {
+    const val = pattern18[idx] ?? 3;
+    const radio = document.querySelector(`input[name="${q.id}"][value="${val}"]`);
+    if (radio) radio.checked = true;
+  });
+
+  const pattern16 = [3,3,2,3, 3,2,2,3, 3,2,2,3, 3,2,2,3];
+  SCENARIOS.forEach((s, idx) => {
+    const val = pattern16[idx] ?? 3;
+    const radio = document.querySelector(`input[name="${s.id}"][value="${val}"]`);
+    if (radio) radio.checked = true;
+  });
+
+  document.getElementById("firstName").value = "Demo";
+  document.getElementById("lastName").value = "User";
+  document.getElementById("workEmail").value = "demo@example.com";
+  document.getElementById("consent").checked = true;
+}
+
+function downloadReport(){
+  if (!lastReportHtml) { alert("Generate the report first."); return; }
+  const blob = new Blob([lastReportHtml], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "AnovaEdu_Full_Report.html";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function printReport(){
+  if (!lastReportHtml) { alert("Generate the report first."); return; }
+  const w = window.open("", "_blank");
+  if (!w) { alert("Popup blocked. Allow popups for this file/site to use Print."); return; }
+  w.document.open();
+  w.document.write(lastReportHtml);
+  w.document.close();
+  w.focus();
+  w.print();
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  render();
+  renderScenarios();
+
+  calculateBtn.addEventListener("click", calc);
+  resetBtn.addEventListener("click", resetAll);
+  fillDemoBtn.addEventListener("click", () => { fillDemo(); });
+  downloadBtn.addEventListener("click", downloadReport);
+  printBtn.addEventListener("click", printReport);
+});
+
+/* ===============================
+   6) HELPERS
+================================ */
+function round2(n){ return Math.round(n*100)/100; }
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, s => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[s]));
+}
+</script>
+
+</body>
+</html>
